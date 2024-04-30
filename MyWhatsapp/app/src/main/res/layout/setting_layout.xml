@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainRelative">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/dim_5">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfileImage"
+                android:layout_width="@dimen/dim_80"
+                android:layout_height="@dimen/dim_80"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_24"
+                android:text="@string/user_name"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgProfileImage"
+                app:layout_constraintStart_toEndOf="@+id/imgProfileImage"
+                app:layout_constraintTop_toTopOf="@+id/imgProfileImage"
+                app:layout_constraintVertical_bias="0.262" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dim_24"
+                android:layout_marginTop="@dimen/dim_8"
+                android:text="@string/status"
+                app:layout_constraintStart_toEndOf="@+id/imgProfileImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile"
+        android:layout_below="@+id/constraintLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"
+        android:layout_marginStart="@dimen/dim_10"
+        android:layout_marginTop="@dimen/dim_20"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_below="@+id/profile"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"
+        android:layout_marginStart="@dimen/dim_10"
+        android:layout_marginTop="@dimen/dim_5"
+        />
+
+</RelativeLayout>

@@ -44,41 +44,50 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         auth = FirebaseAuth.getInstance();
-        binding.btnSignup.setOnClickListener(v ->signupwithEmail(binding.etEmail.getText().toString(), binding.etPassword.getText().toString()));
+        binding.btnSignup.setOnClickListener(v -> {
+            String email = binding.etEmail.getText().toString();
+            String password = binding.etPassword.getText().toString();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            } else {
+                signupwithEmail(email, password);
+            }
+        });
 
 
     }
 
-    public void signupwithEmail(String email, String password){
+    public void signupwithEmail(String email, String password) {
 
-        if(!binding.etName.getText().toString().isEmpty() && !binding.etEmail.getText().toString().isEmpty() && !binding.etPassword.getText().toString().isEmpty()){
+        if (!binding.etName.getText().toString().isEmpty() && !binding.etEmail.getText().toString().isEmpty() && !binding.etPassword.getText().toString().isEmpty()) {
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     String uid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mywhatsapp-d2663-default-rtdb.firebaseio.com/").getReference("users").child(uid);
                     HashMap<String, Object> hashMap = new HashMap<>();
                     hashMap.put("uid", uid);
                     hashMap.put("name", binding.etName.getText().toString());
-                    hashMap.put("email",binding.etEmail.getText().toString());
-                    hashMap.put("password",binding.etPassword.getText().toString());
-                    hashMap.put("image","");
+                    hashMap.put("email", binding.etEmail.getText().toString());
+                    hashMap.put("password", binding.etPassword.getText().toString());
+                    hashMap.put("image", "");
+                    hashMap.put("status", "Hey there! I am using whatsapp");
                     databaseReference.setValue(hashMap).addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful()){
+                        if (task1.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Account created and stored in fireabase");
                             startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                             finish();
-                            Log.d(TAG,"Account created and stored in fireabsde");
-                        }else{
+                        } else {
                             Toast.makeText(this, "Somethind went wrong", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG,"somethind went wrong");
+                            Log.d(TAG, "somethind went wrong");
                         }
                     });
-                }else {
+                } else {
                     Toast.makeText(this, "This account is already exist", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG,"This account is already exist");
+                    Log.d(TAG, "This account is already exist");
                 }
             });
-        }else{
+        } else {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
 
 

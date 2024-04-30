@@ -5,19 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    tools:context=".Activity.SettingActivity">
 
-    <include android:id="@+id/toolbar"
+
+    <include
+        android:id="@+id/toolbar"
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true" />
 
     <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         layout="@layout/content_main"
-        android:layout_below="@+id/toolbar"
-        />
+        android:layout_below="@+id/toolbar"/>
+
 </RelativeLayout>
